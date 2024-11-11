@@ -1,4 +1,4 @@
-import { SkeletonCircle } from "../components/ui/skeleton";
+import { SkeletonCircle } from "../ui/skeleton";
 import { Flex, Stack, Skeleton } from "@chakra-ui/react";
 
 

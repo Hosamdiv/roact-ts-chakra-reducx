@@ -1,8 +1,35 @@
+import { Button, For, Spinner } from "@chakra-ui/react";
+
+import { Toaster, toaster } from "../components/ui/toaster";
 
 const AboutPage = () => {
   return (
-    <div>About</div>
-  )
-}
+    <div className="mt-20">
+      <Button display="flex" justifyContent="center" alignItems="center">
+        <Spinner size="sm" color="red" />
+        ABOUT
+      </Button>
+      <For each={["fulfilled", "pending", "rejected", "error"]}>
+        {(type) => (
+          <Button
+            size="sm"
+            variant="outline"
+            key={type}
+            onClick={() =>
+              toaster.create({
+                title: `Toast status is ${type}`,
+                type: type,
+              })
+            }
+          >
+            {type}
+          </Button>
+        )}
+      </For>
+      <Toaster />
+      
+    </div>
+  );
+};
 
-export default AboutPage
+export default AboutPage;

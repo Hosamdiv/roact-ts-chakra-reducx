@@ -1,6 +1,6 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
-import { useColorMode } from "../components/ui/color-mode";
-import { IProduct } from "../interfaces";
+import { useColorMode } from "../ui/color-mode";
+import { IProduct } from "../../interfaces";
 import { Link } from "react-router-dom";
 
 interface IProps {
@@ -14,17 +14,17 @@ export const ProductsCard = ({ product }: IProps) => {
 
   return (
     <Box
-      p={5}
+      mt={24}
+      p={1}
       rounded={"lg"}
-      maxW="sm"
+      maxW="lg"
       mx={"auto"}
-      mb={20}
+      
       border={"1px solid #a8b5c8"}
       bg={"none"}
       overflow="hidden"
       display="flex"
       flexDirection="column"
-
     >
       <Image
         rounded="full"

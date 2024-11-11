@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -13,16 +13,17 @@ import {
 import { BsArrowLeft } from "react-icons/bs";
 import axios from "axios";
 import { IProduct } from "../interfaces";
-import { ProductDetailsSkeleton } from "./ProductDetailsSkeleton";
+import { ProductDetailsSkeleton } from "../components/components/ProductDetailsSkeleton";
 import { useColorMode } from "../components/ui/color-mode";
+import { useAppDispatch } from "../App/store";
+import { addToCart } from "../App/features/CartSlice";
 
 const ProductChildren = () => {
+  const dispatch = useAppDispatch();
+
   const { id } = useParams<{ id: string }>();
-
   const { colorMode } = useColorMode();
-
   const navigate = useNavigate();
-
   const getProductDetails = async () => {
     const { data } = await axios.get<IProduct>(
       `https://dummyjson.com/products/${id}`
@@ -54,9 +55,10 @@ const ProductChildren = () => {
       </Box>
     );
   }
-
+  const addToCartHendler = () => dispatch(addToCart(data));
+  
   return (
-    <Fragment>
+    <div className="mt-24">
       <Flex
         className="items-center"
         maxW={"sm"}
@@ -117,12 +119,13 @@ const ProductChildren = () => {
               border: "transparent",
             }}
             textTransform="uppercase"
+            onClick={addToCartHendler}
           >
             add to cart
           </Button>
         </Box>
       </Box>
-    </Fragment>
+    </div>
   );
 };
 

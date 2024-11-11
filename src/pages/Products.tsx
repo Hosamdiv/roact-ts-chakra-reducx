@@ -1,8 +1,8 @@
 import { Grid } from "@chakra-ui/react";
-import { ProductsCard } from "./ProductsCard";
+import { ProductsCard } from "../components/components/ProductsCard";
 import { useQuery } from "react-query";
 import { IProduct } from "../interfaces";
-import { ProductsSkeleton } from "./ProductsSkeleton";
+import { ProductsSkeleton } from "../components/components/ProductsSkeleton";
 import axios from "axios";
 
 const ProductsPage = () => {
