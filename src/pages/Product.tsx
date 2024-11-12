@@ -17,6 +17,7 @@ import { ProductDetailsSkeleton } from "../components/components/ProductDetailsS
 import { useColorMode } from "../components/ui/color-mode";
 import { useAppDispatch } from "../App/store";
 import { addToCart } from "../App/features/CartSlice";
+import { Toaster } from "../components/ui/toaster";
 
 const ProductChildren = () => {
   const dispatch = useAppDispatch();
@@ -56,7 +57,7 @@ const ProductChildren = () => {
     );
   }
   const addToCartHendler = () => dispatch(addToCart(data));
-  
+
   return (
     <div className="mt-24">
       <Flex
@@ -123,6 +124,7 @@ const ProductChildren = () => {
           >
             add to cart
           </Button>
+          <Toaster />
         </Box>
       </Box>
     </div>

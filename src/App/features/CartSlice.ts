@@ -1,13 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-
-export interface IProducts {
-  id: number;
-  price: number;
-  thumbnail: string;
-  title: string;
-  qty?: number;
-}
+import { IProducts } from "../../interfaces";
+import { addItemToShoppingCart } from "../../utils/Functions";
 
 interface IProduct {
   cartProducts: IProducts[];
@@ -22,11 +16,14 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<IProducts>) => {
-      state.cartProducts = [...state.cartProducts, action.payload];
+      state.cartProducts = addItemToShoppingCart(
+        state.cartProducts,
+        action.payload
+      );
     },
   },
 });
 
 export const { addToCart } = cartSlice.actions;
-export const selectCart = (state: RootState) => state.cart; // Corrected to access the cart state properly
+export const selectCart = (state: RootState) => state.cart;
 export default cartSlice.reducer;

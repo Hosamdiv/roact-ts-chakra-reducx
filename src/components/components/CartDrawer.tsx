@@ -25,7 +25,7 @@ const CartDrawer = () => {
   return (
     <DrawerRoot open={isOpenCartDrawer} onOpenChange={onClose}>
       <DrawerBackdrop />
-   
+
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Drawer Title</DrawerTitle>
@@ -38,7 +38,16 @@ const CartDrawer = () => {
         </DrawerBody>
         <DrawerFooter>
           <DrawerActionTrigger asChild>
-            <Button variant="outline" color={"red"} >Cancel</Button>
+            <Button
+              variant="outline"
+              color={"red"}
+              border={"2px solid red"}
+              _hover={{
+                bg: "red.900",
+              }}
+            >
+              Cancel
+            </Button>
           </DrawerActionTrigger>
         </DrawerFooter>
         <DrawerCloseTrigger />

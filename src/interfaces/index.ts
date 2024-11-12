@@ -4,5 +4,13 @@ export interface IProduct {
   description: string;
   price: number;
   thumbnail: string;
-  category:string;
+  category: string;
+}
+
+export interface IProducts {
+  id: number;
+  price: number;
+  thumbnail: string;
+  title: string;
+  qty?: number;
 }

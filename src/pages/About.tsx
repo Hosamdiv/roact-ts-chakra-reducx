@@ -9,7 +9,7 @@ const AboutPage = () => {
         <Spinner size="sm" color="red" />
         ABOUT
       </Button>
-      <For each={["fulfilled", "pending", "rejected", "error"]}>
+      <For each={["success", "error", "warning", "info"]}>
         {(type) => (
           <Button
             size="sm"
@@ -27,7 +27,6 @@ const AboutPage = () => {
         )}
       </For>
       <Toaster />
-      
     </div>
   );
 };

@@ -10,7 +10,6 @@ import AboutPage from "../pages/About";
 import ProductChildren from "../pages/Product";
 import LoginPage from "../pages/Login";
 import CookieService from "../services/CookieService";
-
 const token = CookieService.get("jwt");
 const isAuthenticated = !!token;
 
@@ -25,10 +24,7 @@ const router = createBrowserRouter(
           <Route path="/product" element={<ProductsPage />} />
           <Route path="/product/:id" element={<ProductChildren />} />
 
-
-
         </Route>
-
 
         <Route
           path="/login"
