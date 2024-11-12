@@ -16,10 +16,15 @@ import {
   selectGlobal,
 } from "../../App/features/globalSlice";
 import { useAppDispatch } from "../../App/store";
+import CartDrawerItem from "./CartDrawerItem";
+import { clearCart, selectCart } from "../../App/features/CartSlice";
+import { Text } from "@chakra-ui/react";
 
 const CartDrawer = () => {
   const dispatch = useAppDispatch();
   const { isOpenCartDrawer } = useSelector(selectGlobal);
+  const { cartProducts } = useSelector(selectCart);
+  console.log(cartProducts);
 
   const onClose = () => dispatch(onCloseCartDrawerAction());
   return (
@@ -28,13 +33,16 @@ const CartDrawer = () => {
 
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Drawer Title</DrawerTitle>
+          <DrawerTitle fontSize={"2xl"}>Drawer Title</DrawerTitle>
         </DrawerHeader>
         <DrawerBody>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          {cartProducts.length ? (
+            cartProducts.map((item) => (
+              <CartDrawerItem key={item.id} cartItem={item} />
+            ))
+          ) : (
+            <Text fontSize={"lg"}>Your cart is empty</Text>
+          )}
         </DrawerBody>
         <DrawerFooter>
           <DrawerActionTrigger asChild>
@@ -45,6 +53,7 @@ const CartDrawer = () => {
               _hover={{
                 bg: "red.900",
               }}
+              onClick={() => dispatch(clearCart())}
             >
               Cancel
             </Button>

@@ -56,6 +56,8 @@ const ProductChildren = () => {
       </Box>
     );
   }
+  console.log(data);
+  
   const addToCartHendler = () => dispatch(addToCart(data));
 
   return (
@@ -64,7 +66,7 @@ const ProductChildren = () => {
         className="items-center"
         maxW={"sm"}
         mx={"auto"}
-        my={7}
+        my={2}
         fontSize={"lg"}
         cursor={"pointer"}
         onClick={goBack}
@@ -78,7 +80,6 @@ const ProductChildren = () => {
         rounded={"lg"}
         maxW="sm"
         mx={"auto"}
-        mb={20}
         border={"1px solid #a8b5c8"}
         bg={"none"}
         overflow="hidden"

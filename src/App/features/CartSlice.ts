@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { IProducts } from "../../interfaces";
 import { addItemToShoppingCart } from "../../utils/Functions";
+import { toaster } from "../../components/ui/toaster";
 
 interface IProduct {
   cartProducts: IProducts[];
@@ -21,9 +22,22 @@ const cartSlice = createSlice({
         action.payload
       );
     },
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      state.cartProducts = state.cartProducts.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+    clearCart: (state) => {
+      state.cartProducts = [];
+      toaster.create({
+        title: "Your Cart is empty now.",
+        type: "success",
+        duration: 1000,
+      });
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 export const selectCart = (state: RootState) => state.cart;
 export default cartSlice.reducer;

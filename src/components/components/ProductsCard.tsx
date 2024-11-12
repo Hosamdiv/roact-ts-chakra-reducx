@@ -1,16 +1,20 @@
-import { Box, Button, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { useColorMode } from "../ui/color-mode";
 import { IProduct } from "../../interfaces";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../App/features/CartSlice";
+import { useAppDispatch } from "../../App/store";
 
 interface IProps {
   product: IProduct;
 }
 
 export const ProductsCard = ({ product }: IProps) => {
-  const { description, title, thumbnail, price, id, category } = product;
+  const dispatch = useAppDispatch();
 
+  const { description, title, thumbnail, price, id, category } = product;
   const { colorMode } = useColorMode();
+  const addToCartHendler = () => dispatch(addToCart(product));
 
   return (
     <Box
@@ -19,7 +23,6 @@ export const ProductsCard = ({ product }: IProps) => {
       rounded={"lg"}
       maxW="lg"
       mx={"auto"}
-      
       border={"1px solid #a8b5c8"}
       bg={"none"}
       overflow="hidden"
@@ -61,26 +64,45 @@ export const ProductsCard = ({ product }: IProps) => {
           ${price}
         </Text>
       </Box>
-
-      <Button
-        as={Link}
-        to={`/product/${id}`}
-        w="full"
-        bg={colorMode === "light" ? "#e6f3fd" : "#9f7aea"}
-        color={colorMode !== "light" ? "#e6f3fd" : "#9f7aea"}
-        size="xl"
-        variant="outline"
-        border="none"
-        overflow="hidden"
-        _hover={{
-          bg: colorMode !== "light" ? "#e6f3fd" : "#9f7aea",
-          color: colorMode !== "light" ? "purple.600" : "white",
-          border: "transparent",
-        }}
-        mt={10}
-      >
-        Buy now
-      </Button>
+      <Flex mt={20} justifyContent="space-between">
+        <Button
+          w="49%"
+          bg={colorMode === "light" ? "#e6f3fd" : "#9f7aea"}
+          color={colorMode !== "light" ? "#e6f3fd" : "#9f7aea"}
+          size="xl"
+          variant="outline"
+          border="none"
+          py={5}
+          overflow="hidden"
+          _hover={{
+            bg: colorMode !== "light" ? "#e6f3fd" : "#9f7aea",
+            color: colorMode !== "light" ? "purple.600" : "white",
+            border: "transparent",
+          }}
+          textTransform="uppercase"
+          onClick={addToCartHendler}
+        >
+          add to cart
+        </Button>
+        <Button
+          as={Link}
+          to={`/product/${id}`}
+          w="49%"
+          bg={colorMode === "light" ? "#e6f3fd" : "#9f7aea"}
+          color={colorMode !== "light" ? "#e6f3fd" : "#9f7aea"}
+          size="xl"
+          variant="outline"
+          border="none"
+          overflow="hidden"
+          _hover={{
+            bg: colorMode !== "light" ? "#e6f3fd" : "#9f7aea",
+            color: colorMode !== "light" ? "purple.600" : "white",
+            border: "transparent",
+          }}
+        >
+          Buy now
+        </Button>
+      </Flex>
     </Box>
   );
 };
