@@ -26,6 +26,11 @@ const cartSlice = createSlice({
       state.cartProducts = state.cartProducts.filter(
         (item) => item.id !== action.payload
       );
+      toaster.create({
+        title: "Remove from your cart.",
+        type: "success",
+        duration: 1000,
+      });
     },
     clearCart: (state) => {
       state.cartProducts = [];

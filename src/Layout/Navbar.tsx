@@ -16,6 +16,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const token = CookieService.get("jwt");
+  const x = !token
   const logoutHandler = () => {
     CookieService.remove("jwt");
     window.location.reload();
@@ -59,7 +60,7 @@ const Navbar = () => {
           {colorMode === "light" ? <IoMoon /> : <IoMdSunny />}
         </Button>
         <Button onClick={onOpen}>cart({cartProducts.length})</Button>
-        {token ? (
+        {x ? (
           <MenuRoot positioning={{ placement: "right-start" }}>
             <MenuTrigger asChild>
               <button>
