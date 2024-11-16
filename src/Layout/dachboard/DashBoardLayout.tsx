@@ -1,27 +1,21 @@
 import { HiHome } from "react-icons/hi";
-import { Avatar } from "../components/ui/avatar";
+import { Avatar } from "../../components/ui/avatar";
 import { IconType } from "react-icons/lib";
 import { HiOutlineViewColumns } from "react-icons/hi2";
 import { BsGrid3X3 } from "react-icons/bs";
-import { Outlet } from "react-router-dom";
-import {
-  Box,
-  Flex,
-  FlexProps,
-  HStack,
-  IconButton,
-  Link,
-  Text,
-} from "@chakra-ui/react";
-import { NavLink as routerLink } from "react-router-dom";
-import { useColorModeValue } from "../components/ui/color-mode";
-import { CloseButton } from "../components/ui/close-button";
+import { NavLink, Outlet } from "react-router-dom";
+import { Box, Flex, FlexProps, Text } from "@chakra-ui/react";
+import { useColorModeValue } from "../../components/ui/color-mode";
+import { CloseButton } from "../../components/ui/close-button";
+import { IoMdSettings } from "react-icons/io";
+import { FiStar } from "react-icons/fi";
+
 import {
   MenuContent,
   MenuItem,
   MenuRoot,
   MenuTrigger,
-} from "../components/ui/menu";
+} from "../../components/ui/menu";
 
 interface LinkItemProps {
   name: string;
@@ -38,16 +32,13 @@ const LinkItems: Array<LinkItemProps> = [
   { to: "/dashboard", name: "Home", icon: HiHome },
   { to: "/dashboard/products", name: "Product", icon: HiOutlineViewColumns },
   { to: "/dashboard/categories", name: "Categories", icon: BsGrid3X3 },
+  { to: "/dashboard/favourites", name: "Favorites", icon: FiStar },
+  { to: "/", name: "Settings", icon: IoMdSettings },
 ];
 
 const NavItem = ({ to, icon: IconBase, children, ...rest }: NavItemProps) => {
   return (
-    <Link
-      as={routerLink}
-      to={to}
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
+    <NavLink to={to} style={{ textDecoration: "none" }}>
       <Flex
         align="center"
         p="4"
@@ -55,31 +46,33 @@ const NavItem = ({ to, icon: IconBase, children, ...rest }: NavItemProps) => {
         borderRadius="lg"
         role="group"
         cursor="pointer"
-        // border={"1px solid"}
         _hover={{
-          bg: "cyan.400",
-          color: "white",
+          bg: "purple.400",
         }}
         {...rest}
       >
         {IconBase && (
-          <IconBase className="mr-2 size-5 text-current group-hover:text-white" />
+          <IconBase
+            className="mr-2 size-5 text-current
+          group-hover:text-white"
+          />
         )}
 
         {children}
       </Flex>
-    </Link>
+    </NavLink>
   );
 };
 
 const DashBoardLayout: React.FC = () => {
   return (
     <>
+      {/* Sidebar */}
       <div className="transition-all duration-500 fixed top-0 ">
         <Box
           transition="1s ease"
           bg={useColorModeValue("white", "gray.900")}
-          borderRight="1px solid red"
+          borderRight="2px solid"
           borderRightColor={useColorModeValue("gray.200", "gray.700")}
           w={{ base: "full", md: 60 }}
           pos="fixed"
@@ -97,7 +90,10 @@ const DashBoardLayout: React.FC = () => {
             <CloseButton display={{ base: "flex", md: "none" }} />
           </Flex>
 
-          <div className="flex flex-col mt-6 justify-between flex-1">
+          <div
+            className="flex flex-col mt-6 
+          justify-between flex-1"
+          >
             {LinkItems.map((item) => (
               <NavItem key={item.name} icon={item.icon} to={item.to}>
                 {item.name}
@@ -109,9 +105,8 @@ const DashBoardLayout: React.FC = () => {
         </Box>
       </div>
 
-      <MenuRoot 
-      positioning={{ placement: "right-start" }}
-      >
+      {/* Main Content */}
+      <MenuRoot positioning={{ placement: "bottom-start" }}>
         <Flex
           ml={{ base: 0, md: 60 }}
           px={{ base: 4, md: 4 }}
@@ -122,15 +117,6 @@ const DashBoardLayout: React.FC = () => {
           borderBottomColor={useColorModeValue("gray.200", "gray.700")}
           justifyContent={{ base: "space-between", md: "flex-end" }}
         >
-          <IconButton
-            display={{ base: "flex", md: "none" }}
-            onClick={() => {}}
-            variant="outline"
-            aria-label="open menu"
-          >
-            <HiHome />
-          </IconButton>
-
           <Text
             display={{ base: "flex", md: "none" }}
             fontSize="2xl"
@@ -140,36 +126,30 @@ const DashBoardLayout: React.FC = () => {
             Logo
           </Text>
 
-          {/* <HStack spaceX={{ base: "0", md: "6" }}> */}
-            {/* <IconButton size="lg" variant="ghost" aria-label="open menu">
-              <HiHome />
-            </IconButton> */}
-            {/* <Flex alignItems={"center"}> */}
-              <MenuRoot positioning={{ placement: "right-start" }}>
-                <MenuTrigger asChild>
-                  <button>
-                    <Avatar
-                      name="Sage Adebayo"
-                      src="https://bit.ly/sage-adebayo"
-                      shape="rounded"
-                      size="lg"
-                    />
-                  </button>
-                </MenuTrigger>
+          <MenuTrigger asChild>
+            <button >
+              <Avatar
+                name="Sage Adebayo"
+                src="https://bit.ly/sage-adebayo"
+                shape="rounded"
+                size="lg"
+              />
+            </button>
+          </MenuTrigger>
 
-                <MenuContent mt={"55px"}>
-                  <MenuItem value="new-txt">New Text File</MenuItem>
-                  <MenuItem value="new-file">New File...</MenuItem>
-                  <MenuItem value="new-win">New Window</MenuItem>
-                  <MenuItem value="open-file">Open File...</MenuItem>
-       
-                </MenuContent>
-              </MenuRoot>
-            {/* </Flex> */}
-          {/* </HStack> */}
+          <MenuContent mr={"5"}>
+            <MenuItem value="new-txt">New Text File</MenuItem>
+            <MenuItem value="new-file">New File...</MenuItem>
+            <MenuItem value="new-win">New Window</MenuItem>
+            <MenuItem value="open-file">Open File...</MenuItem>
+          </MenuContent>
         </Flex>
       </MenuRoot>
-      <Outlet />
+
+      {/* Outlet Content */}
+      <Box ml={{ base: 0, md: 60 }} p="4">
+        <Outlet />
+      </Box>
     </>
   );
 };

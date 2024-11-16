@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { axiosApi } from "../../pages/config/axios.config";
+import { axiosApi } from "../../config/axios.config";
 import { IUser } from "../../pages/Login";
 import { toaster } from "../../components/ui/toaster";
 import CookieService from "../../services/CookieService";

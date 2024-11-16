@@ -16,7 +16,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const token = CookieService.get("jwt");
-  const x = !token
+  const x = !token;
   const logoutHandler = () => {
     CookieService.remove("jwt");
     window.location.reload();
@@ -43,7 +43,7 @@ const Navbar = () => {
         <li
           className={`duration-200 hover:bg-gray-500 mx-5 rounded-md p-1 text-lg`}
         >
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
         <li
           className={`duration-200 hover:bg-gray-500 mx-5 rounded-md p-1 text-lg`}
@@ -63,7 +63,7 @@ const Navbar = () => {
         {x ? (
           <MenuRoot positioning={{ placement: "right-start" }}>
             <MenuTrigger asChild>
-              <button>
+              <button >
                 <Avatar
                   name="Sage Adebayo"
                   src="https://bit.ly/sage-adebayo"

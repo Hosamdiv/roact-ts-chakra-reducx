@@ -10,8 +10,9 @@ import AboutPage from "../pages/About";
 import ProductChildren from "../pages/Product";
 import LoginPage from "../pages/Login";
 import CookieService from "../services/CookieService";
-import AdminDashboard from "../dachboard";
-import DashBoardLayout from "../dachboard/DashBoardLayout";
+import DashBoardLayout from "../Layout/dachboard/DashBoardLayout";
+import AdminDashboard from "../Layout/dachboard/AdminDashboard";
+import DashboardProducts from "../Layout/dachboard/DashboardProducts";
 const token = CookieService.get("jwt");
 const isAuthenticated = !!token;
 
@@ -28,13 +29,10 @@ const router = createBrowserRouter(
         </Route>
         <Route path="/dashboard" element={<DashBoardLayout />}>
           <Route index element={<AdminDashboard />} />
-          <Route
-            path="products"
-            element={
-              <h1 className="ml-60 text-red-700 border border-red-600">sadas</h1>
-            }
-          />
-          <Route path="categories" element={<h1>asdasdasdas</h1>} />
+          <Route path="products" element={<DashboardProducts />} />
+          <Route path="categories" element={<h1>categories</h1>} />
+          <Route path="favourites" element={<h1>favourites</h1>} />
+          <Route path="settings" element={<h1>settings</h1>} />
         </Route>
 
         <Route
