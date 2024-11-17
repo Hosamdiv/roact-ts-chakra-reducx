@@ -55,7 +55,7 @@ const CartDrawer = () => {
               }}
               onClick={() => dispatch(clearCart())}
             >
-              Cancel
+              Cancel All
             </Button>
           </DrawerActionTrigger>
         </DrawerFooter>

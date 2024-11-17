@@ -1,24 +1,68 @@
-import { Table } from "@chakra-ui/react";
+import { Image, Table } from "@chakra-ui/react";
 import TableSkeleton from "./TableSkeleton";
+import { useGetDashboardProductsQuery } from "../../App/services/apiSlice";
+import { DashboardProduct } from "../../interfaces";
+import { Button } from "../ui/button";
+import { FaRegTrashCan } from "react-icons/fa6";
+import { AiOutlineEye } from "react-icons/ai";
+import { FaPencilAlt } from "react-icons/fa";
 
 const DashboardPorudtsTable = () => {
-    
-  return <TableSkeleton/>
+  const { isLoading, data, error } = useGetDashboardProductsQuery({ page: 1 });
+  console.log(isLoading);
+  console.log(data);
+  console.log(error);
+
+  if (isLoading) return <TableSkeleton />;
+
   return (
     <Table.Root maxW={"85%"} mx={"auto"} my={10} size="sm">
       <Table.Header>
         <Table.Row>
-          <Table.ColumnHeader>Product</Table.ColumnHeader>
+          <Table.ColumnHeader>ID</Table.ColumnHeader>
+          <Table.ColumnHeader>Title</Table.ColumnHeader>
           <Table.ColumnHeader>Category</Table.ColumnHeader>
+          <Table.ColumnHeader>Thumbnail</Table.ColumnHeader>
           <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+          <Table.ColumnHeader textAlign="end">Stock</Table.ColumnHeader>
+          <Table.ColumnHeader></Table.ColumnHeader>
+          <Table.ColumnHeader>Action</Table.ColumnHeader>
+          <Table.ColumnHeader></Table.ColumnHeader>
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {items.map((item) => (
+        {data?.products.map((item: DashboardProduct) => (
           <Table.Row key={item.id}>
-            <Table.Cell>{item.name}</Table.Cell>
+            <Table.Cell>{item.id}</Table.Cell>
+            <Table.Cell>{item.title}</Table.Cell>
             <Table.Cell>{item.category}</Table.Cell>
-            <Table.Cell textAlign="end">{item.price}</Table.Cell>
+
+            <Table.Cell>
+              <Image
+                rounded={"full"}
+                objectFit={"cover"}
+                boxSize={"40px"}
+                src={item.thumbnail}
+                alt={item.title}
+              />
+            </Table.Cell>
+            <Table.Cell textAlign="end">${item.price}</Table.Cell>
+            <Table.Cell textAlign="end">{item.stock}</Table.Cell>
+            <Table.Cell>
+              <Button _hover={{bg:"purple.600"}} bg={"purple.400"} variant={"solid"} ml={3}>
+                <AiOutlineEye />
+              </Button>
+            </Table.Cell>
+            <Table.Cell>
+              <Button _hover={{bg:"red.600"}}  bg={"red.400"} variant={"solid"}>
+                <FaRegTrashCan />
+              </Button>
+            </Table.Cell>
+            <Table.Cell>
+              <Button _hover={{bg:"blue.600"}}  bg={"blue.400"} variant={"solid"}>
+                <FaPencilAlt />
+              </Button>
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
@@ -27,10 +71,3 @@ const DashboardPorudtsTable = () => {
 };
 
 export default DashboardPorudtsTable;
-const items = [
-  { id: 1, name: "Laptop", category: "Electronics", price: 999.99 },
-  { id: 2, name: "Coffee Maker", category: "Home Appliances", price: 49.99 },
-  { id: 3, name: "Desk Chair", category: "Furniture", price: 150.0 },
-  { id: 4, name: "Smartphone", category: "Electronics", price: 799.99 },
-  { id: 5, name: "Headphones", category: "Accessories", price: 199.99 },
-];

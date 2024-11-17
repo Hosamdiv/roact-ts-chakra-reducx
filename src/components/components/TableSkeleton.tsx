@@ -10,7 +10,7 @@ const TableSkeleton = () => {
           justifyContent={"space-between"}
           border={"1px solid #333"}
           h={"30px"}
-          rounded={"md"}
+          rounded={"sm"}
           p={2}
         >
           <Skeleton h={"6px"} w={"120px"} bg={"gray"} />
