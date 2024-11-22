@@ -7,8 +7,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import { Box, Flex, FlexProps, Text } from "@chakra-ui/react";
 import { useColorModeValue } from "../../components/ui/color-mode";
 import { CloseButton } from "../../components/ui/close-button";
-import { IoMdSettings } from "react-icons/io";
 import { FiStar } from "react-icons/fi";
+import { MdProductionQuantityLimits } from "react-icons/md";
 
 import {
   MenuContent,
@@ -33,7 +33,7 @@ const LinkItems: Array<LinkItemProps> = [
   { to: "/dashboard/products", name: "Product", icon: HiOutlineViewColumns },
   { to: "/dashboard/categories", name: "Categories", icon: BsGrid3X3 },
   { to: "/dashboard/favourites", name: "Favorites", icon: FiStar },
-  { to: "/", name: "Settings", icon: IoMdSettings },
+  { to: "/product", name: "Product All", icon: MdProductionQuantityLimits },
 ];
 
 const NavItem = ({ to, icon: IconBase, children, ...rest }: NavItemProps) => {
@@ -85,7 +85,7 @@ const DashBoardLayout: React.FC = () => {
             justifyContent="space-between"
           >
             <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-              Logo
+              Admin
             </Text>
             <CloseButton display={{ base: "flex", md: "none" }} />
           </Flex>
@@ -127,7 +127,7 @@ const DashBoardLayout: React.FC = () => {
           </Text>
 
           <MenuTrigger asChild>
-            <button >
+            <button>
               <Avatar
                 name="Sage Adebayo"
                 src="https://bit.ly/sage-adebayo"
