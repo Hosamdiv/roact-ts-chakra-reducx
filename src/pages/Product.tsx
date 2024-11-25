@@ -18,9 +18,12 @@ import { useColorMode } from "../components/ui/color-mode";
 import { useAppDispatch } from "../App/store";
 import { addToCart } from "../App/features/CartSlice";
 import { Toaster } from "../components/ui/toaster";
+import { useSelector } from "react-redux";
+import { selectNetwork } from "../App/features/NetworkMode";
 
 const ProductChildren = () => {
   const dispatch = useAppDispatch();
+  const isOnline = useSelector(selectNetwork);
 
   const { id } = useParams<{ id: string }>();
   const { colorMode } = useColorMode();
@@ -41,7 +44,7 @@ const ProductChildren = () => {
       document.title = `Product ${data.title} Page`;
     }
   }, [data]);
-  if (isLoading) {
+  if (isLoading || !isOnline) {
     return (
       <Box maxW={"sm"} mx={"auto"} my={20}>
         <ProductDetailsSkeleton />
@@ -57,7 +60,7 @@ const ProductChildren = () => {
     );
   }
   console.log(data);
-  
+
   const addToCartHendler = () => dispatch(addToCart(data));
 
   return (

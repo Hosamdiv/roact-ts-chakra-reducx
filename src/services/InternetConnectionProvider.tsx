@@ -12,7 +12,6 @@ const InternetConnectionProvider = ({
   children,
 }: InternetConnectionProviderProps) => {
   const dispatch = useAppDispatch();
-  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
 
   const [toastWarning, setToastWarning] = useState<string | null>(null);
   const [toastSuccess, setToastSuccess] = useState<string | null>(null);
@@ -54,14 +53,12 @@ const InternetConnectionProvider = ({
     }
   };
   const handleOnline = () => {
-    setIsOnline(true);
     addToastSuccess();
     removeToastWarning();
     dispatch(networkMode(true));
   };
 
   const handleOffline = () => {
-    setIsOnline(false);
     addToastWarning();
     removeToastSuccess();
     dispatch(networkMode(false));
@@ -76,10 +73,6 @@ const InternetConnectionProvider = ({
       window.removeEventListener("offline", handleOffline);
     };
   }, [toastWarning, toastSuccess]);
-
-  if (!isOnline) {
-    return <>{children}</>;
-  }
 
   return <>{children}</>;
 };

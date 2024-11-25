@@ -4,16 +4,20 @@ import { useQuery } from "react-query";
 import { IProduct } from "../interfaces";
 import { ProductsSkeleton } from "../components/components/ProductsSkeleton";
 import axios from "axios";
+import { selectNetwork } from "../App/features/NetworkMode";
+import { useSelector } from "react-redux";
 
 const ProductsPage = () => {
+  const isOnline = useSelector(selectNetwork);
+
   const getProductsList = async () => {
     const { data } = await axios.get(`https://dummyjson.com/products`);
     return data;
   };
 
   const { isLoading, data } = useQuery("products", () => getProductsList());
-  
-  if (isLoading)
+
+  if (isLoading || !isOnline)
     return (
       <Grid
         margin={30}
@@ -32,7 +36,7 @@ const ProductsPage = () => {
       gap="6"
     >
       {data.products.map((product: IProduct) => (
-        <ProductsCard  key={product.id} product={product} />
+        <ProductsCard key={product.id} product={product} />
       ))}
     </Grid>
   );

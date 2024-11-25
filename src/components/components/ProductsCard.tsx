@@ -18,7 +18,6 @@ export const ProductsCard = ({ product }: IProps) => {
 
   return (
     <Box
-    
       mt={24}
       p={1}
       rounded={"lg"}
@@ -101,7 +100,6 @@ export const ProductsCard = ({ product }: IProps) => {
             border: "transparent",
           }}
           textTransform="uppercase"
-
         >
           Buy now
         </Button>
