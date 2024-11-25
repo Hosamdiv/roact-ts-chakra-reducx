@@ -5,7 +5,10 @@ import { HiOutlineViewColumns } from "react-icons/hi2";
 import { BsGrid3X3 } from "react-icons/bs";
 import { NavLink, Outlet } from "react-router-dom";
 import { Box, Flex, FlexProps, Text } from "@chakra-ui/react";
-import { useColorModeValue } from "../../components/ui/color-mode";
+import {
+  useColorMode,
+  useColorModeValue,
+} from "../../components/ui/color-mode";
 import { CloseButton } from "../../components/ui/close-button";
 import { FiStar } from "react-icons/fi";
 import { MdProductionQuantityLimits } from "react-icons/md";
@@ -16,6 +19,9 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "../../components/ui/menu";
+import { Button } from "../../components/ui/button";
+import { IoMoon } from "react-icons/io5";
+import { IoMdSunny } from "react-icons/io";
 
 interface LinkItemProps {
   name: string;
@@ -65,6 +71,8 @@ const NavItem = ({ to, icon: IconBase, children, ...rest }: NavItemProps) => {
 };
 
 const DashBoardLayout: React.FC = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
       {/* Sidebar */}
@@ -125,17 +133,26 @@ const DashBoardLayout: React.FC = () => {
           >
             Logo
           </Text>
+          <div
+            className={`flex items-center mr-10 space-x-5 text-${
+              colorMode === "light" ? "black" : "white"
+            }`}
+          >
+            <Button className="hover:bg-gray-500" onClick={toggleColorMode}>
+              {colorMode === "light" ? <IoMoon /> : <IoMdSunny />}
+            </Button>
 
-          <MenuTrigger asChild>
-            <button>
-              <Avatar
-                name="Sage Adebayo"
-                src="https://bit.ly/sage-adebayo"
-                shape="rounded"
-                size="lg"
-              />
-            </button>
-          </MenuTrigger>
+            <MenuTrigger asChild>
+              <button>
+                <Avatar
+                  name="Sage Adebayo"
+                  src="https://bit.ly/sage-adebayo"
+                  shape="rounded"
+                  size="lg"
+                />
+              </button>
+            </MenuTrigger>
+          </div>
 
           <MenuContent mr={"5"}>
             <MenuItem value="new-txt">New Text File</MenuItem>

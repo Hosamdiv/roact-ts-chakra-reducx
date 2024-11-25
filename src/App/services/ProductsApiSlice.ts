@@ -24,7 +24,7 @@ export const ProductsApiSlice = createApi({
     getDashboardProducts: build.query<
       GetDashboardProductsResponse,
       GetDashboardProductsArgs
-      // ** DET
+      // ** DET PRODUCT
     >({
       query: ({ page }) => ({
         url: `products?limit=5&skip=${page}`,
@@ -40,7 +40,7 @@ export const ProductsApiSlice = createApi({
             ]
           : [{ type: "Products", id: "LIST" }],
     }),
-    // ** UPDATE
+    // ** UPDATE PRODUCT
     updateDashboardProducts: build.mutation({
       query: ({ id, body }) => ({
         url: `products/${id}`,
@@ -65,8 +65,7 @@ export const ProductsApiSlice = createApi({
       },
       invalidatesTags: (id) => [{ type: "Products", id }],
     }),
-
-    // ** DELETE
+    // ** DELETE PRODUCT
     deleteDashboardProducts: build.mutation({
       query(id) {
         return {
@@ -76,11 +75,37 @@ export const ProductsApiSlice = createApi({
       },
       invalidatesTags: (id) => [{ type: "Products", id }],
     }),
+    // ** CREATE PRODUCT
+    createDashboardProducts: build.mutation({
+      query: ({ body }) => ({
+        url: `products`,
+        method: "POST",
+        body,
+      }),
+      async onQueryStarted({ body }, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          ProductsApiSlice.util.updateQueryData(
+            "getDashboardProducts",
+            { page: 0 },
+            (draft) => {
+              draft.products.push(body); 
+              draft.total += 1;
+            }
+          )
+        );
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo(); 
+        }
+      },
+      invalidatesTags: () => [{ type: "Products", id: "LIST" }],
+    }),
   }),
 });
-
 export const {
   useGetDashboardProductsQuery,
   useDeleteDashboardProductsMutation,
-  useUpdateDashboardProductsMutation
+  useUpdateDashboardProductsMutation,
+  useCreateDashboardProductsMutation,
 } = ProductsApiSlice;

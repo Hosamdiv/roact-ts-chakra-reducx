@@ -2,7 +2,7 @@ import { Box, Flex, Skeleton, Stack } from "@chakra-ui/react";
 
 const TableSkeleton = () => {
   return (
-    <Stack maxW="85%" mx={"auto"} my={10}>
+    <Stack maxW="95%" mx={"auto"} my={10}>
       {Array.from({ length: 10 }, (_, idx) => (
         <Flex
           key={idx}

@@ -16,7 +16,9 @@ import DashboardProducts from "../Layout/dachboard/DashboardProducts";
 const token = CookieService.get("jwt");
 const isAuthenticated = !!token;
 
+
 const router = createBrowserRouter(
+
   createRoutesFromElements(
     <>
       {/* Root Layout */}

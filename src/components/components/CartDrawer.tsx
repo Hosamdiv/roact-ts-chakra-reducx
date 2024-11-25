@@ -24,7 +24,6 @@ const CartDrawer = () => {
   const dispatch = useAppDispatch();
   const { isOpenCartDrawer } = useSelector(selectGlobal);
   const { cartProducts } = useSelector(selectCart);
-  console.log(cartProducts);
 
   const onClose = () => dispatch(onCloseCartDrawerAction());
   return (

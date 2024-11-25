@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import loginSlice from "./features/loginStore";
 import cartSlice from "./features/CartSlice";
 import globalSlice from "./features/globalSlice";
+import networkSlice from "./features/NetworkMode";
 import { useDispatch } from "react-redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -13,6 +14,7 @@ const persistCartConfig = {
 const persistedCart = persistReducer(persistCartConfig, cartSlice);
 export const store = configureStore({
   reducer: {
+    network: networkSlice,
     login: loginSlice,
     cart: persistedCart,
     global: globalSlice,

@@ -3,11 +3,14 @@
 import type { IconButtonProps } from "@chakra-ui/react"
 import { ClientOnly, IconButton, Skeleton } from "@chakra-ui/react"
 import { ThemeProvider, useTheme } from "next-themes"
-import type { ThemeProviderProps } from "next-themes/dist/types"
-import { forwardRef } from "react"
+import type { ThemeProviderProps } from "next-themes"
+import * as React from "react"
 import { LuMoon, LuSun } from "react-icons/lu"
 
-export function ColorModeProvider(props: ThemeProviderProps) {
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface ColorModeProviderProps extends ThemeProviderProps {}
+
+export function ColorModeProvider(props: ColorModeProviderProps) {
   return (
     <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
   )
@@ -35,9 +38,10 @@ export function ColorModeIcon() {
   return colorMode === "light" ? <LuSun /> : <LuMoon />
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
 
-export const ColorModeButton = forwardRef<
+export const ColorModeButton = React.forwardRef<
   HTMLButtonElement,
   ColorModeButtonProps
 >(function ColorModeButton(props, ref) {
