@@ -144,6 +144,7 @@ const DashboardProductsTable = () => {
       console.error("Failed to create product:", error);
     }
   };
+
   useEffect(() => {
     if (SuccessModale) {
       setClickProductId(null);
@@ -212,14 +213,16 @@ const DashboardProductsTable = () => {
               <DialogActionTrigger asChild>
                 <Button variant="outline">Cancel</Button>
               </DialogActionTrigger>
-              <Button
-                bg={"green.400"}
-                _hover={{ bg: "green.600" }}
-                loading={loadingCreate}
-                onClick={handleSubmit}
-              >
-                Create
-              </Button>
+              <DialogTrigger asChild>
+                <Button
+                  bg={"green.400"}
+                  _hover={{ bg: "green.600" }}
+                  loading={loadingCreate}
+                  onClick={handleSubmit}
+                >
+                  Create
+                </Button>
+              </DialogTrigger>
             </DialogFooter>
             <DialogCloseTrigger />
           </DialogContent>
@@ -258,12 +261,6 @@ const DashboardProductsTable = () => {
                 <Table.Cell>{item.stock}</Table.Cell>
 
                 <Table.Cell>
-                  {/* <Link
-                    to={`/product/${item.id}`}
-                    className="bg-purple-400 hover:bg-purple-600 text-white rounded px-4 py-2 flex items-center justify-center"
-                  >
-                    <AiOutlineEye />
-                  </Link> */}
                   <Button
                     _hover={{ bg: "purple.600" }}
                     bg={"purple.400"}
