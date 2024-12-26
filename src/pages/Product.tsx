@@ -59,9 +59,8 @@ const ProductChildren = () => {
       </Box>
     );
   }
-  console.log(data);
 
-  const addToCartHendler = () => dispatch(addToCart(data));
+  const addToCartHandler = () => dispatch(addToCart(data));
 
   return (
     <div className="mt-24">
@@ -124,7 +123,7 @@ const ProductChildren = () => {
               border: "transparent",
             }}
             textTransform="uppercase"
-            onClick={addToCartHendler}
+            onClick={addToCartHandler}
           >
             add to cart
           </Button>

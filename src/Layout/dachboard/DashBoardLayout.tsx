@@ -10,7 +10,6 @@ import {
   useColorModeValue,
 } from "../../components/ui/color-mode";
 import { CloseButton } from "../../components/ui/close-button";
-import { FiStar } from "react-icons/fi";
 import { MdProductionQuantityLimits } from "react-icons/md";
 
 import {
@@ -38,7 +37,6 @@ const LinkItems: Array<LinkItemProps> = [
   { to: "/dashboard", name: "Home", icon: HiHome },
   { to: "/dashboard/products", name: "Product", icon: HiOutlineViewColumns },
   { to: "/dashboard/categories", name: "Categories", icon: BsGrid3X3 },
-  { to: "/dashboard/favourites", name: "Favorites", icon: FiStar },
   { to: "/product", name: "Product All", icon: MdProductionQuantityLimits },
 ];
 

@@ -3,15 +3,17 @@ import { ProductsCard } from "../components/components/ProductsCard";
 import { useQuery } from "react-query";
 import { IProduct } from "../interfaces";
 import { ProductsSkeleton } from "../components/components/ProductsSkeleton";
-import axios from "axios";
 import { selectNetwork } from "../App/features/NetworkMode";
 import { useSelector } from "react-redux";
+import { axiosApi } from "../config/axios.config";
 
 const ProductsPage = () => {
   const isOnline = useSelector(selectNetwork);
 
   const getProductsList = async () => {
-    const { data } = await axios.get(`https://dummyjson.com/products`);
+    const { data } = await axiosApi.get(
+    'https://dummyjson.com/products'
+    );
     return data;
   };
 

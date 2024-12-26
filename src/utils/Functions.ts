@@ -5,8 +5,11 @@ export const addItemToShoppingCart = (
   cartProducts: IProducts[],
   cartShopping: IProducts
 ) => {
+  // ** exists => increase qty
   const exists = cartProducts.find((item) => item.id === cartShopping.id);
   console.log(exists);
+  console.log(cartProducts);
+  console.log(cartShopping);
 
   if (exists) {
     toaster.create({
@@ -15,6 +18,7 @@ export const addItemToShoppingCart = (
       type: "success",
       duration: 1000,
     });
+    // ** not exists => add the product
     return cartProducts.map((item) =>
       item.id === cartShopping.id ? { ...item, qty: (item.qty || 0) + 1 } : item
     );

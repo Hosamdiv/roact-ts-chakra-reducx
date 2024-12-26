@@ -12,9 +12,11 @@ interface IProps {
 export const ProductsCard = ({ product }: IProps) => {
   const dispatch = useAppDispatch();
 
-  const { description, title, thumbnail, price, id, category } = product;
+  const { category, description, id, price, thumbnail, title } = product;
+
   const { colorMode } = useColorMode();
-  const addToCartHendler = () => dispatch(addToCart(product));
+
+  const addToCartHandler = () => dispatch(addToCart(product));
 
   return (
     <Box
@@ -80,29 +82,33 @@ export const ProductsCard = ({ product }: IProps) => {
             border: "transparent",
           }}
           textTransform="uppercase"
-          onClick={addToCartHendler}
+          onClick={addToCartHandler}
         >
           add to cart
         </Button>
-        <Button
-          as={Link}
+        <Link
           to={`/product/${id}`}
-          w="49%"
-          bg={colorMode === "light" ? "#e6f3fd" : "#9f7aea"}
-          color={colorMode !== "light" ? "#e6f3fd" : "#9f7aea"}
-          size="xl"
-          variant="outline"
-          border="none"
-          overflow="hidden"
-          _hover={{
-            bg: colorMode !== "light" ? "#e6f3fd" : "#9f7aea",
-            color: colorMode !== "light" ? "purple.600" : "white",
-            border: "transparent",
-          }}
-          textTransform="uppercase"
+          className={`
+    w-[49%] 
+    ${
+      colorMode === "light"
+        ? "bg-[#e6f3fd] text-[#9f7aea]"
+        : "bg-[#9f7aea] text-[#e6f3fd]"
+    } 
+    text-xl 
+    uppercase 
+    border-none 
+    overflow-hidden 
+    hover:${
+      colorMode !== "light"
+        ? "bg-[#e6f3fd] text-purple-600"
+        : "bg-[#9f7aea] text-white"
+    } 
+    hover:border-transparent
+  `}
         >
           Buy now
-        </Button>
+        </Link>
       </Flex>
     </Box>
   );

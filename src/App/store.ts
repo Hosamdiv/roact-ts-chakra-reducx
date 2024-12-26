@@ -11,7 +11,9 @@ const persistCartConfig = {
   key: "cart",
   storage,
 };
+
 const persistedCart = persistReducer(persistCartConfig, cartSlice);
+
 export const store = configureStore({
   reducer: {
     network: networkSlice,
@@ -25,9 +27,18 @@ export const store = configureStore({
       serializableCheck: false,
     }).concat([ProductsApiSlice.middleware]),
 });
-export const persistor = persistStore(store);
+
+
+
+
+
+
+
+export const persister = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
+
+
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();

@@ -109,13 +109,20 @@ const DashboardProductsTable = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value, type, files } = e.target;
-    if (type === "file" && files && files.length > 0) {
+    const { name, value, type } = e.target;
+
+    if (
+      type === "file" &&
+      e.target instanceof HTMLInputElement &&
+      e.target.files
+    ) {
+      const files = e.target.files; 
       setCreateData({ ...createData, [name]: files[0] });
     } else {
       setCreateData({ ...createData, [name]: value });
     }
   };
+
   const handleSubmit = () => {
     try {
       const newProduct = {
@@ -251,15 +258,12 @@ const DashboardProductsTable = () => {
                 <Table.Cell>{item.stock}</Table.Cell>
 
                 <Table.Cell>
-                  <Button
-                    as={Link}
+                  <Link
                     to={`/product/${item.id}`}
-                    _hover={{ bg: "purple.600" }}
-                    bg={"purple.400"}
-                    variant={"solid"}
+                    className="bg-purple-400 hover:bg-purple-600 text-white rounded px-4 py-2 flex items-center justify-center"
                   >
                     <AiOutlineEye />
-                  </Button>
+                  </Link>
                 </Table.Cell>
 
                 <Table.Cell>

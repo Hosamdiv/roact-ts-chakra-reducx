@@ -33,7 +33,6 @@ const router = createBrowserRouter(
           <Route index element={<AdminDashboard />} />
           <Route path="products" element={<DashboardProducts />} />
           <Route path="categories" element={<h1>categories</h1>} />
-          <Route path="favourites" element={<h1>favourites</h1>} />
           <Route path="settings" element={<h1>settings</h1>} />
         </Route>
 

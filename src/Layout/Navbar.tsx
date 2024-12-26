@@ -16,7 +16,6 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const token = CookieService.get("jwt");
-  const x = !token;
   const logoutHandler = () => {
     CookieService.remove("jwt");
     window.location.reload();
@@ -51,6 +50,7 @@ const Navbar = () => {
           <NavLink to="/product">Product</NavLink>
         </li>
       </ul>
+      
       <div
         className={`flex items-center space-x-4 text-${
           colorMode === "light" ? "black" : "white"
@@ -60,7 +60,7 @@ const Navbar = () => {
           {colorMode === "light" ? <IoMoon /> : <IoMdSunny />}
         </Button>
         <Button onClick={onOpen}>cart({cartProducts.length})</Button>
-        {x ? (
+        {token ? (
           <MenuRoot positioning={{ placement: "right-start" }}>
             <MenuTrigger asChild>
               <button >

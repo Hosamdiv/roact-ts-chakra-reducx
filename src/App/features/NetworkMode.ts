@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 interface INetworkMode {
@@ -13,7 +13,7 @@ const networkSlice = createSlice({
   name: "network",
   initialState,
   reducers: {
-    networkMode: (state, action: { payload: boolean }) => {
+    networkMode: (state, action:PayloadAction<boolean>) => {
       state.isOnline = action.payload;
     },
   },

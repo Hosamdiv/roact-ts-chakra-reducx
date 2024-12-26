@@ -20,7 +20,7 @@ export const ProductsApiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://dummyjson.com",
   }),
-  endpoints: (build) => ({
+  endpoints: build => ({
     getDashboardProducts: build.query<
       GetDashboardProductsResponse,
       GetDashboardProductsArgs
@@ -88,7 +88,7 @@ export const ProductsApiSlice = createApi({
             "getDashboardProducts",
             { page: 0 },
             (draft) => {
-              draft.products.push(body); 
+              draft.products.push(body);
               draft.total += 1;
             }
           )
@@ -96,7 +96,7 @@ export const ProductsApiSlice = createApi({
         try {
           await queryFulfilled;
         } catch {
-          patchResult.undo(); 
+          patchResult.undo();
         }
       },
       invalidatesTags: () => [{ type: "Products", id: "LIST" }],
@@ -109,3 +109,13 @@ export const {
   useUpdateDashboardProductsMutation,
   useCreateDashboardProductsMutation,
 } = ProductsApiSlice;
+
+
+
+
+
+
+
+
+
+

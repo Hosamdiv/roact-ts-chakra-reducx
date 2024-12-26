@@ -5,7 +5,7 @@ import { PasswordInput } from "../components/ui/password-input";
 import { useEffect, useState } from "react";
 import { Field } from "../components/ui/field";
 import { selectLogin, userLogin } from "../App/features/loginStore";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from "../components/ui/button";
 import { Toaster } from "../components/ui/toaster";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,7 @@ const SimpleCard = ({ isAuthenticated }: RootLayoutProps) => {
     if (isAuthenticated) {
       navigate(-1);
     }
-  }, [isAuthenticated]); 
+  }, [isAuthenticated]);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -66,7 +66,12 @@ const SimpleCard = ({ isAuthenticated }: RootLayoutProps) => {
   };
 
   return (
-    <Flex minH="100vh" align="center" justify="center" bg={useColorModeValue("gray.50", "blun.900")}>
+    <Flex
+      minH="100vh"
+      align="center"
+      justify="center"
+      bg={useColorModeValue("gray.50", "blun.900")}
+    >
       <Stack mx="auto" maxW="lg" py={12} px={1}>
         <Stack align="center">
           <Heading fontSize="4xl" my="30px">
@@ -83,7 +88,11 @@ const SimpleCard = ({ isAuthenticated }: RootLayoutProps) => {
         >
           <Stack>
             <div id="email" className="space-y-1 py-2">
-              <Field invalid={isEmail} label="Email address" errorText="Email field is required">
+              <Field
+                invalid={isEmail}
+                label="Email address"
+                errorText="Email field is required"
+              >
                 <Input
                   name="identifier"
                   id="email"
@@ -96,7 +105,11 @@ const SimpleCard = ({ isAuthenticated }: RootLayoutProps) => {
             </div>
 
             <div id="password" className="space-y-1 py-2">
-              <Field invalid={isPassword} label="Password" errorText="Password field is required">
+              <Field
+                invalid={isPassword}
+                label="Password"
+                errorText="Password field is required"
+              >
                 <PasswordInput
                   name="password"
                   id="password"
@@ -113,7 +126,12 @@ const SimpleCard = ({ isAuthenticated }: RootLayoutProps) => {
             </div>
 
             <Stack>
-              <Stack my="10px" direction={{ base: "column", sm: "row" }} align="start" justify="space-between">
+              <Stack
+                my="10px"
+                direction={{ base: "column", sm: "row" }}
+                align="start"
+                justify="space-between"
+              >
                 <Checkbox>Remember me</Checkbox>
                 <Text color="blue.400">Forgot password?</Text>
               </Stack>
@@ -128,6 +146,7 @@ const SimpleCard = ({ isAuthenticated }: RootLayoutProps) => {
               >
                 Sign in
               </Button>
+
               <Toaster />
             </Stack>
           </Stack>
