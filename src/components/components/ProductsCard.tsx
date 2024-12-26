@@ -87,8 +87,6 @@ export const ProductsCard = ({ product }: IProps) => {
           add to cart
         </Button>
         <Button
-          as={"Link"}
-          to={`/product/${id}`}
           w="49%"
           bg={colorMode === "light" ? "#e6f3fd" : "#9f7aea"}
           color={colorMode !== "light" ? "#e6f3fd" : "#9f7aea"}
@@ -103,32 +101,12 @@ export const ProductsCard = ({ product }: IProps) => {
           }}
           textTransform="uppercase"
         >
-          Buy now
-        </Button>
-
-        {/* <Link
+          <Link
           to={`/product/${id}`}
-          className={`
-    w-[49%] text-white text-center rounded-md
-    ${
-      colorMode === "light"
-        ? "bg-[#e6f3fd] text-[#9f7aea]"
-        : "bg-[#9f7aea] text-[#e6f3fd]"
-    } 
-    text-xl 
-    uppercase 
-    border-none 
-    overflow-hidden 
-    hover:${
-      colorMode !== "light"
-        ? "bg-[#e6f3fd] text-purple-600"
-        : "bg-[#9f7aea] text-white"
-    } 
-    hover:border-transparent
-  `}
-        >
-          Buy now
-        </Link> */}
+          >
+            Buy now
+          </Link>
+        </Button>
       </Flex>
     </Box>
   );
