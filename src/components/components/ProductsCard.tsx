@@ -86,10 +86,30 @@ export const ProductsCard = ({ product }: IProps) => {
         >
           add to cart
         </Button>
-        <Link
+        <Button
+          as={"Link"}
+          to={`/product/${id}`}
+          w="49%"
+          bg={colorMode === "light" ? "#e6f3fd" : "#9f7aea"}
+          color={colorMode !== "light" ? "#e6f3fd" : "#9f7aea"}
+          size="xl"
+          variant="outline"
+          border="none"
+          overflow="hidden"
+          _hover={{
+            bg: colorMode !== "light" ? "#e6f3fd" : "#9f7aea",
+            color: colorMode !== "light" ? "purple.600" : "white",
+            border: "transparent",
+          }}
+          textTransform="uppercase"
+        >
+          Buy now
+        </Button>
+
+        {/* <Link
           to={`/product/${id}`}
           className={`
-    w-[49%] 
+    w-[49%] text-white text-center rounded-md
     ${
       colorMode === "light"
         ? "bg-[#e6f3fd] text-[#9f7aea]"
@@ -108,7 +128,7 @@ export const ProductsCard = ({ product }: IProps) => {
   `}
         >
           Buy now
-        </Link>
+        </Link> */}
       </Flex>
     </Box>
   );
