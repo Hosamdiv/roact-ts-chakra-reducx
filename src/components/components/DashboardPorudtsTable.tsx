@@ -116,7 +116,7 @@ const DashboardProductsTable = () => {
       e.target instanceof HTMLInputElement &&
       e.target.files
     ) {
-      const files = e.target.files; 
+      const files = e.target.files;
       setCreateData({ ...createData, [name]: files[0] });
     } else {
       setCreateData({ ...createData, [name]: value });
@@ -258,12 +258,21 @@ const DashboardProductsTable = () => {
                 <Table.Cell>{item.stock}</Table.Cell>
 
                 <Table.Cell>
-                  <Link
+                  {/* <Link
                     to={`/product/${item.id}`}
                     className="bg-purple-400 hover:bg-purple-600 text-white rounded px-4 py-2 flex items-center justify-center"
                   >
                     <AiOutlineEye />
-                  </Link>
+                  </Link> */}
+                  <Button
+                    _hover={{ bg: "purple.600" }}
+                    bg={"purple.400"}
+                    variant={"solid"}
+                  >
+                    <Link to={`/product/${item.id}`}>
+                      <AiOutlineEye />
+                    </Link>
+                  </Button>
                 </Table.Cell>
 
                 <Table.Cell>
