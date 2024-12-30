@@ -34,7 +34,7 @@ interface NavItemProps extends FlexProps {
 }
 
 const LinkItems: Array<LinkItemProps> = [
-  { to: "/dashboard", name: "Home", icon: HiHome },
+  { to: "/", name: "Home", icon: HiHome },
   { to: "/dashboard/products", name: "Product", icon: HiOutlineViewColumns },
   { to: "/dashboard/categories", name: "Categories", icon: BsGrid3X3 },
   { to: "/product", name: "Product All", icon: MdProductionQuantityLimits },

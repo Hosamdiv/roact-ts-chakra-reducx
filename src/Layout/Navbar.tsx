@@ -42,7 +42,7 @@ const Navbar = () => {
         <li
           className={`duration-200 hover:bg-gray-500 mx-5 rounded-md p-1 text-lg`}
         >
-          <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/dashboard/products">Dashboard</NavLink>
         </li>
         <li
           className={`duration-200 hover:bg-gray-500 mx-5 rounded-md p-1 text-lg`}
